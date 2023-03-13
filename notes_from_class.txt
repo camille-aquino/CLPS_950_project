@@ -1,0 +1,78 @@
+
+Journal Log of Notes from Class (compiled links and advice from Ivan): 
+
+3/8/2023
+
+Youtube tutorials about curve fitting data
+https://youtube.com/playlist?list=PL-wDspsmzkyR8xUgXkAGMH677boRSYi4n 
+
+Importing clampfit data (later versions) to matlab
+it works correctly for my episodic simulation files:
+https://github.com/fcollman/abfload/pull/5/commits/9fb0406fc02897161eedeffdd04d27f598534ecd
+
+"You need to insert the following 2 line between lines 290-291:
+tmpIx3=strfind((char(BigString)'),'IN');
+h.comment1=char(BigString(tmpIx2(1)+4:tmpIx3(1)-1))';"
+
+We see the input: 30,000 rows
+Can input file from patch clamp, a program.
+We thought we could have imaging software so something could recognize 
+the curve of the action potential
+
+——————————————————
+Ivan’s Advice
+"Best to have direct access to points, not the image
+Can make it into a graph to detect slopes
+Maybe not do it as an image
+If you have access to points can detect curvature or maybe very narrow peaks 
+As soon as you have data to play with let me know
+First thing you should do is take it and plot it
+Plot the action potentials
+Next thing we work on the recognition, how to process each one of them”
+
+Things to figure out
+
+- Packages we can use 
+‘Zooming in’ when the spikes are all so close together and small?
+How many action potentials and what percent that is
+Ectopics, and count how many action potentials were needed before the first ectopic
+
+Ideas for Modeling
+“Can make it into a graph to detect slopes”
+If you have access to points can detect curvature or maybe very narrow peaks 
+
+
+3/13/23
+
+We got the data into matlab, just need to figure out what to do with it
+
+Example: 22d14044.abf
+
+size(d) -- tells us there are three dimensions
+
+Ivan's advice: compare per dimension to see where the important points lay
+
+X and y 
+X and z 
+Y and z
+
+plotting every dimension to see where the points are
+
+Figured out third dimension is where the membrane potential points are
+
+
+plot(1:200000, d(:,3,1))
+plot(1:200000, d(:,3,2))
+plot(1:200000, d(:,3,3))
+
+200000 per sweep
+
+Each sweep how many seconds long?
+
+10 sec long protocols
+
+Measurements of Vm were 2000 Hz, meaning every second of the sweep we measured Vm 2000 times
+3 secs long = 60000 
+10 secs long = 200000
+
+
