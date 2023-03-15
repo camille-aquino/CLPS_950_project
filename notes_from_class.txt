@@ -101,5 +101,22 @@ Worked on our respective parts for an 1 hr
 Stella made the graph pretty 
 I figured out that curvefitter may not be what we need, played around with the app with growing despair
 
+3/15/23
 
+Meeting with Ivan:
+
+- Recommending we look at each sweep in smaller increments first 
+    - Maybe make a function we can just call to run it 
+    - Have lower limit  (2000s) and upper limit 
+
+Looking at these windows we have positive example but try to find negative example (slope?):
+- Once you have derivative, you can plug the derivative and even just the sign 
+    (like + + + , 0, - - - ) can keep track of change in sign, 
+    whenever it happens in a window, it really depends so much 
+    on when you start, just make sure every time the next two or three is from a different sign
+    You can find 0 and that means it's a spike, then check next window and see if there’s another peak
+    to confirm if it's an action potential
+
+- Stella says certain protocols (30Hz vs 100Hz) are near 100% (all are APs) while others have a lot
+    more fails 
 
