@@ -95,3 +95,11 @@ Measurements of Vm were 2000 Hz, meaning every second of the sweep we measured V
 10 secs long = 200000
 
 
+3/14/23
+
+Worked on our respective parts for an 1 hr
+Stella made the graph pretty 
+I figured out that curvefitter may not be what we need, played around with the app with growing despair
+
+
+
