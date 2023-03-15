@@ -1,24 +1,37 @@
-%ectopic action potential signal determination project
-%I was trying to edit another person's repository by accident
+%<<<<<<< Updated upstream
+d = abfload('22918005.abf','start',0,'stop','e');
+close all
+lowerl = 55000
+upperl = 60000
+plot(lowerl:upperl, d(lowerl:upperl,3,1))
+xlabel('Time(ms)')
+ylabel('Membrane Potential (mV)')
+
+function  = plot_abfload(fn, lowerl, upperl)
+%>>>>>>> Stashed changes
+
+d = abfload(fn, 'start', lowerl, )
+%d = abfload('22d11014.abf','start',0,'stop','e');
+%close all
+%plot(1:60000, d(:,3,20))
+%xlabel('Time(ms)')
+%ylabel('Membrane Potential (mV)')
+
+%plot(1:60000, d(:,3,20))
+
+% x = 1:60000;
+% y = d(:,3,20);
 
 
-%we used an abfload code (cloned the github repository) to load abf format
-%files into matlab
-%this returned a 3 dimentional table of values, which we then needed to
-%plot
-% to print data table, we used 
- d=abfload('22d11014.abf', 'start', 0, 'stop','e')
 
+% IDEA: maybe loop through each peak and find the slope with curvefitter?
 
-%file number:22d11014.abf
-%30Hz protocol with ectopic firing in sweep 7
-% sweep duration:3 seconds, with a recording frequency
-% of 2000Hz (membrane potential measured 2000 times per second)
-%this file contains 20 sweeps
+% numAPs = 0;
 
-% to see number of sweeps and size of data, we used 'size(d)'
+%for each sweep
+% for i = 1:width of each AP/nonAP :end
+%   curvefitter ( x = 1:size(d,1), y = 
 
-%then, we ploted the data using 'plot'
-plot(1:60000,d2(:,3,7))
-%this plots all the membrane potential values (1:60000) (3rd dimension) in
-%sweep 7 (ectopic AP)
+%<<<<<<< HEAD
+%=======
+%>>>>>>> 9ee7ab1d530a738f33cc00faed53dbb0fbe70369
