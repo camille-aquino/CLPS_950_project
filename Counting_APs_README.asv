@@ -11,6 +11,7 @@ PROJECT DESCRIPTION
 %plot
 % to print data table, we used 
  d=abfload('22d11014.abf', 'start', 0, 'stop','e')
+<<<<<<< Updated upstream
 
 %to plot the data, we used 
 close all
@@ -23,3 +24,14 @@ ylabel('Membrane Potential (mV)')
 
 % 03/15/2023 update
 % we have found a fi
+=======
+% to plot table, we used
+close all
+lowerl = 20000
+upperl = 25000
+plot(lowerl:upperl, d(lowerl:uperl,3,1))
+xlabel('Time(ms)')
+ylabel('Membrane Potential (mV)')
+
+% the upper and lower limits refer to ms (time) on the x axis and they need to match 
+>>>>>>> Stashed changes
