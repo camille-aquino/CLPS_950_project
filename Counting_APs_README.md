@@ -11,3 +11,20 @@ PROJECT DESCRIPTION
 %plot
 % to print data table, we used 
  d=abfload('22d11014.abf', 'start', 0, 'stop','e')
+
+%to plot the data, we used 
+close all
+lowerl = 20000
+upperl = 25000
+plot(lowerl:uppe, d(:60000,3,20))
+xlabel('Time(ms)')
+ylabel('Membrane Potential (mV)')
+%this allows us to zoom in (upper and lower limit refer to time in x axis) and look at individual action potentials to determine if they are successful
+
+% 03/15/2023 update
+% we have found a file that has confirmed failed action potential events
+-file name: 22918005.abf
+%goal: to differentiate and count those APs
+%ideas:
+-plot the derivative of the Vm curve and spot zeros, then tell matlab that those are APs
+-go by height, and only count the events that make it past a Vm  threshold 
