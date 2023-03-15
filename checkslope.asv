@@ -1,0 +1,21 @@
+function [slope] = checkslope(d, lowerl, upperl, sweep)
+
+%width of each attempted action potential: 
+%width = 
+
+x = 0;
+y = 0;
+
+pos_slope = false;
+neg_slope = false;
+zero_slope = false;
+
+% checking start and end of 
+
+for i = lowerl : width : upperl-width
+    for j = 
+    x1 = i;
+    x2 = i + width;
+    y1 = d(i,3,sweep);
+    y2 = d(i+width,3,sweep)
+    
