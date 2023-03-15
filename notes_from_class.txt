@@ -65,6 +65,25 @@ plot(1:200000, d(:,3,1))
 plot(1:200000, d(:,3,2))
 plot(1:200000, d(:,3,3))
 
+**  third number is how many sweeps there are 
+sweeps = ? (some science thing)
+
+first find size: 
+
+size(d)
+
+put size in place of 1:size, then put sweep in third number
+ex: 
+size(d) = 60000 4 20
+
+number of sweeps = 20
+
+plot(1:60000, d(:,3,20))
+
+
+
+
+-----
 200000 per sweep
 
 Each sweep how many seconds long?
