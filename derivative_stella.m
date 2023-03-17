@@ -4,9 +4,9 @@
 d = abfload('22d11014.abf','start',0,'stop','e');
 size(d)
 close all
-lowerl = 30000
-upperl = 40000
-plot(lowerl:upperl, d(lowerl:upperl,3,1));
+lowerl = 1
+upperl = 60000
+plot(lowerl:upperl, d(lowerl:upperl,3,1))
 xlabel('Time(ms)')
 ylabel('Membrane Potential (mV)')
 
