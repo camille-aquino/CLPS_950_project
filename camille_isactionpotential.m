@@ -27,6 +27,8 @@ for i = lowerl : width : upperl-width
         else 
             num_zero_slope = num_zero_slope + 1;
         end
+
+        
     end
 end
 
