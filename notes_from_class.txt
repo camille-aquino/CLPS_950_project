@@ -120,3 +120,10 @@ Looking at these windows we have positive example but try to find negative examp
 - Stella says certain protocols (30Hz vs 100Hz) are near 100% (all are APs) while others have a lot
     more fails 
 
+3/16/23
+
+Stella made derivative plot. She explained to me the science of determining 
+an action potential based on if the derivative dy = 0. There will be 4 times
+dy = 0, so we can either have another equation y = 0 and count the number of 
+intersections, or make a loop that counts the number of times dy = 0.
+
