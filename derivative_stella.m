@@ -19,3 +19,11 @@ size(dy)
 plot(lowerl:upperl,dy(lowerl:upperl))
 
 %this created a phase plot for the action potentials 
+%derivative plot is made and our new strategy is to make 2 conditional
+%statements refering to the two different graphs (Vm-time and dy-time)
+
+%1. if Vm reaches a value above a threshold (+20mV), up count by 1
+%2. if there are 4 events/ groups of zeros in the derivative plot in that
+%same time period as 1., then this is an AP 
+%if not (3 zero chunks or less), then the AP previously counted as valid needs to be removed (lower
+%count by 1)
