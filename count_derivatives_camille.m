@@ -5,8 +5,7 @@ function [numzero] = count_derivatives_camille(d, lowerl, upperl, sweep, width)
 % Step 1: form derivative -- diff(y) - diff(x)
 
 % making derivative of every single vm measurement is too much! need to
-% find
-% width of each AP so I can go up by that amount only
+% find width of each AP so I can go up by that amount only
 
 dy = diff(d(lowerl:width:upperl,3,sweep)) ./ diff(lowerl:width:upperl);
 
