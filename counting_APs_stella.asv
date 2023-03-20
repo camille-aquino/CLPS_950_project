@@ -12,7 +12,7 @@ data=abfload(file)
 storagemat = [];
 N_max_spikes = 300;
 Threshtrace = [];
-j = 1;
+
 
 %creating a for loop that will check every sweep from 1 to max # of sweeps
 %and will add 1 to the AP count every time the membrne potential exceeds a
@@ -71,5 +71,6 @@ for a = 1:numsweeps
         set_cross_minus=  above_thres(find(index_shift_neg));   % find(x) returns nonzero arguments.
         set_cross_minus(length(set_cross_plus))= above_thres(end);
 
-        nspikes= length(set_cross_plusgi); % Number of pulses, i.e. number of windows.
+        spike_count= length(set_cross_plus); % Number of pulses, i.e. number of windows.
+    end
 end

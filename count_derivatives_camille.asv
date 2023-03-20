@@ -1,0 +1,23 @@
+function [numzero] = count_derivatives_camille(d, lowerl, upperl, sweep)
+
+% counting the number of derivatives that equal 0
+
+% Step 1: form derivative
+
+dy = (d(upperl,3,sweep) - d(lowerl))./(diff(lowerl:upperl));
+
+numzero = 0;
+
+for i = lowerl:upperl
+    if dy == 0
+        count = count + 1;
+    end
+end
+
+end
+%Check:      
+%d = abfload('22d11014.abf','start',0,'stop','e');
+%size(d)
+%lowerl = 1;
+%upperl = 60000;
+%sweep = 1;
