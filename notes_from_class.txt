@@ -127,3 +127,20 @@ an action potential based on if the derivative dy = 0. There will be 4 times
 dy = 0, so we can either have another equation y = 0 and count the number of 
 intersections, or make a loop that counts the number of times dy = 0.
 
+
+3/21/23 
+
+Meeting with Ivan (office hours) -- 45 minutes (.75 hrs)
+
+Notes: counting derivative
+% other method:
+% closet = d(d>0 & d < th)
+% success = length(closet) > th2
+
+% need case a without ectopic
+% case b with ectopic -- take derivative, then long number of 0s before
+% hits a spike (just create case for each one)
+% make histogram -- time, count of spikes, at some point you'll have 0s for
+% certain number and then the ectopic -- can say there's long number of 0s
+% before 
+% can make case for each of those 
