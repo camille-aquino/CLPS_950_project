@@ -1,5 +1,8 @@
 function [numzero] = count_derivatives_camille(d, lowerl, upperl, sweep, width)
 
+% width is different for different protocols/frequencies (30 Hz, 60 Hz,
+% etc.)
+
 % counting the number of derivatives that equal 0
 
 % Step 1: form derivative -- diff(y) - diff(x)
@@ -12,7 +15,7 @@ dy = diff(d(lowerl:width:upperl,3,sweep)) ./ diff(lowerl:width:upperl);
 numzero = 0;
 
 for i = lowerl:upperl
-    if dy == 0
+    if (dy >= -0.01 && dy >= 0.01)
         numzero = numzero + 1;
     end
 end
@@ -25,3 +28,4 @@ end
 %lowerl = 1;
 %upperl = 60000;
 %sweep = 1;
+% width = 2
