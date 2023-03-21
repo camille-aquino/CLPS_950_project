@@ -12,7 +12,7 @@ dy = diff(d(lowerl:width:upperl,3,sweep)) ./ diff(lowerl:width:upperl);
 start_loc = [0 0 0];
 
 while(true)
-    if (dy >= 2)
+    if (dy >= 1)
 start_loc = 
         break
     end
