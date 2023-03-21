@@ -144,3 +144,7 @@ Notes: counting derivative
 % certain number and then the ectopic -- can say there's long number of 0s
 % before 
 % can make case for each of those 
+
+
+% width is different for different protocols/frequencies (30 Hz, 60 Hz,
+% etc.)
