@@ -4,15 +4,11 @@
 %failed events
 
 
-total_sweep_num=input('')%# of sweeps
-file=input('')%abf file name
-channel=input('')%4 channels for clampex: Vm_primary (1), Im_sec (2), Vm_prime2 (3), Im_sec2 (4), we choose #3 because we are using a current clamp
-samp_frequency=input('')%sampling frequency (20kHz for tested protocol)
-data=abfload(file)
-storagemat = [];
-N_max_spikes = 300;
-Threshtrace = [];
-j = 1;
+total_sweep_num=19%input('19');%# of sweeps
+file='22d11014.abf'%input('22d11014.abf');%abf file name
+channel=3%input('What ');%4 channels for clampex: Vm_primary (1), Im_sec (2), Vm_prime2 (3), Im_sec2 (4), we choose #3 because we are using a current clamp
+samp_frequency=20%input('20');%sampling frequency (20kHz for tested protocol)
+data=abfload(file);
 
 %creating a for loop that will check every sweep from 1 to max # of sweeps
 %and will add 1 to the AP count every time the membrne potential exceeds a
@@ -25,9 +21,9 @@ j = 1;
 %dead) but not too high (some APs would be missed that way)
 %every AP will go through -10mV
 
-for a = 1:numsweeps
+for a = 1:total_sweep_num
     x = linspace(0,10,200000);% n points in a linear vector with evenly spaced points
-    threshold_for_APs = -10;
+    threshold_for_APs =10;
        spike_count = [];%creating empty matrix to count APs
        trace = data(:,channel,a);%selecting all of the measurments from channel 3 in the current sweep we are in (inputs rk like plotting)
        %this focuses on one trace at a time (trace=sweep)
@@ -44,9 +40,9 @@ for a = 1:numsweeps
     if isempty(above_thres) < 1 %if we have any values above threshold
         clear('set_cross_plus');
         clear('set_cross_minus');
-        % first index posgi = 1st sample above the threshold:
+        % first index pos = 1st sample above the threshold:
         index_shift_pos(1)=min(above_thres);
-        % set last index neggi to the last sample above the threshold:
+        % set last index neg to the last sample above the threshold:
         index_shift_neg(length(above_thres))=max(above_thres);
 
         %now the goal is to detect a jump between the indices (where the
@@ -57,7 +53,7 @@ for a = 1:numsweeps
         %to detect discontinous events (next AP):above_thres+1=~ above_thres'
         %(500+1=~347), record the indices
 
-        for i=1:length(above_thres)-1
+        for i=1:length(above_thres)-1;
             if above_thres(i+1) > above_thres(i)+1 
                 index_shift_pos(i+1)=i; %this was the first sample (left or rising phase)
                 index_shift_neg(i)=i; %this was the last sample (right or falling phase)
@@ -68,8 +64,15 @@ for a = 1:numsweeps
         %indices of the truncated "above_threshold" trace are converted into sample indices of the original trace:
 
         set_cross_plus=  above_thres(find(index_shift_pos));   % find(x) returns nonzero arguments.
-        set_cross_minus=  above_thres(find(index_shift_neg));   % find(x) returns nonzero arguments.
+        set_cross_minus=  above_thres(find(index_shift_neg));   
         set_cross_minus(length(set_cross_plus))= above_thres(end);
 
-        nspikes= length(set_cross_plusgi); % Number of pulses, i.e. number of windows.
+        spike_count= length(set_cross_plus); % Number of pulses, i.e. number of windows.
+        disp(['spike count at sweep:' a])
+        disp(spike_count)
+    end
 end
+
+%15ms is the width of each AP event, 20kHz is the frequency of recording,
+%so 20,000*0.015=300 steps of the x axis (every 300 steps count how many 0s
+%in the derivative.
