@@ -10,7 +10,7 @@ dy = diff(d(lowerl:width:upperl,3,sweep)) ./ diff(lowerl:width:upperl);
 % start counting APs
 
 
-start_loc = find(dy>0.5, 1); % finds first place where dy is much greater than 0 (i.e. 0.5)
+start_loc = find(dy>=1, 1); % finds first place where dy is much greater than 0 (i.e. 1)
 
 dy_copy = dy(start_loc:end)
 
