@@ -73,7 +73,7 @@ for a = 1:total_sweep_num
     end
 end
 
-%15ms is the width of each AP event, 20kHz is the frequency of recording,
+%20kHz is the frequency of recording,
 %so 20,000*0.010=200 steps of the x axis for the 100Hz protocol(every 200 steps count how many 0s
 %in the derivative).
 %this is 0.015 --300 for 60Hz and 0.030--600 for 30Hz (just change this in

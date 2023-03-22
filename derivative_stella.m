@@ -1,11 +1,11 @@
 %attempt to plot derivative of graph in a new plot that is going to hit 0
 %everytime the Vm value does not change
 
-d = abfload('22d11014.abf','start',0,'stop','e');
+d = abfload('22918005.abf','start',0,'stop','e');
 size(d)
 close all
 lowerl = 1
-upperl = 60000
+upperl = 40000
 plot(lowerl:upperl, d(lowerl:upperl,3,1))
 xlabel('Time(ms)')
 ylabel('Membrane Potential (mV)')
@@ -27,3 +27,27 @@ plot(lowerl:upperl,dy(lowerl:upperl))
 %same time period as 1., then this is an AP 
 %if not (3 zero chunks or less), then the AP previously counted as valid needs to be removed (lower
 %count by 1)
+
+
+i=1;
+total_sweep_num=19
+for a = 1:total_sweep_num
+    threshold_deri =0.1;
+    trace = data(:,channel,a)
+
+clear("start_of_dericount")
+    for i=lowerl:upperl
+        if abs(dy)>=threshold_deri
+            start_of_dericount=dy(dy, i:upperl)
+        end
+    end
+   disp(start_of_dericount)
+
+end
+plot(start_of_dericount)
+
+        
+idx = find(abs(dy) < threshold);
+zero_count=0;
+        
+
