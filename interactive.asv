@@ -1,0 +1,12 @@
+%load data and plot function
+d = abfload('22918005.abf','start',0,'stop','e');
+close all
+lowerl = 50000
+upperl = 52000
+plot(lowerl:upperl, d(lowerl:upperl,3,1))
+xlabel('Time(ms)')
+ylabel('Membrane Potential (mV)')
+%
+dy=diff(d(lowerl:upperl,3,1))./diff(lowerl:upperl);
+size(dy)
+plot(lowerl:upperl,dy(lowerl:upperl))
