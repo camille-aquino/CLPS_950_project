@@ -4,11 +4,10 @@ function [success] = count_derivatives_camille(d, lowerl, upperl, sweep, width)
 
 % Step 1: form derivative -- diff(y) - diff(x)
 
-dy = diff(d(lowerl:upperl,3,sweep)) ./ diff(lowerl:upperl);
-
 % detect when the derivative is very different from 0 (difference > ?), then
 % start counting APs
 
+dy=diff(d(lowerl:upperl,3,1))./diff(lowerl:upperl);
 
 start_loc = find(dy>0.1, 1); % finds first place where dy is much greater than 0 (i.e. 0.5)
 
@@ -30,4 +29,4 @@ end
 %lowerl = 1;
 %upperl = 10000;
 %sweep = 1;
-% width = 0.08
+%width = 0.04
