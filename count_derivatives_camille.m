@@ -18,8 +18,8 @@ numzero = [];
 
 count_ap = 0;
 
-for i = start_loc:4000:upperl % assuming 4000 is the width of each ap
-    dy_bit = dy(i:i+400)
+for i = start_loc:400:upperl % assuming 400 is the width of each ap
+    dy_bit = dy(i:i+400);
     numzero = sum(abs(dy_bit) <= 0.01); % if close to 0
     if(numzero >= 4) % successful AP if at least 4 0s
         count_ap = count_ap+1;
@@ -39,7 +39,10 @@ end
 %Check:      
 %d = abfload('22d11014.abf','start',0,'stop','e');
 %size(d)
-%lowerl = 1;
-%upperl = 30000;
+%lowerl = 30000;
+%upperl = 60000;
 %sweep = 1;
 %width = 0.08
+
+% did 1 to 30000 , then 30000 to 60000
+    % got 46 + 96 = 142 APs for sweep 1
