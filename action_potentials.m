@@ -2,13 +2,31 @@
 d = abfload('22918005.abf','start',0,'stop','e');
 size(d)
 close all
-lowerl = 50000
-upperl = 52000
-plot(lowerl:upperl, d(lowerl:upperl,3,1))
-xlabel('Time(ms)')
+lowerl = 1
+upperl = 50000
+upperl2=100000
+upperl3=150000
+figure
+subplot(2,2,1)
+plot(lowerl:upperl3, d(lowerl:upperl3,3,1))
+xlabel('Time*20kHz= number of Vm recordings')
 ylabel('Membrane Potential (mV)')
+subplot(2,2,2)
+plot(lowerl:upperl, d(lowerl:upperl,3,1))
+xlabel('Time*20kHz= number of Vm recordings')
+ylabel('Membrane Potential (mV)')
+subplot(2,2,3)
+plot(upperl:upperl2, d(upperl:upperl2,3,1))
+xlabel('Time*20kHz= number of Vm recordings')
+ylabel('Membrane Potential (mV)')
+subplot(2,2,4)
+plot(upperl2:upperl3, d(upperl2:upperl3,3,1))
+xlabel('Time*20kHz= number of Vm recordings')
+ylabel('Membrane Potential (mV)')
+
+%d(lowerl:upperl,3,1) - d(lowerl+1:upperl+1,3,1)
 %take derivative of data
-dy=diff(d(lowerl:upperl,3,1))./diff(lowerl:upperl);
+dy=diff(d(lowerl:10:upperl,3,1))./diff(lowerl:10:upperl);
 size(dy)
 plot(lowerl:upperl,dy(lowerl:upperl))
 
