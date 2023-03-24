@@ -69,7 +69,9 @@ while(num_sweep <= size(d,3))
         for i = lowerl:400:upperl % assuming 400 is the width of each ap
            if(upperl == 60000)
              upperl = upperl-400;
-           end
+             dy_bit = dy(i:i+400);
+               numzero = sum(abs(dy_bit) <= 0.01);
+           else
             dy_bit = dy(i:i+400);
             numzero = sum(abs(dy_bit) <= 0.01); % count how many derivatives are close to 0
             % check how many are very close to each other
@@ -78,11 +80,8 @@ while(num_sweep <= size(d,3))
              end
         end
         count_ap
-    lowerl = lowerl + 10000
-    if(lowerl==10001)
-        lowerl=10000
-    end
-    upperl = upperl + 10000 
+    lowerl = lowerl + 10000;
+        upperl = upperl + 10000; 
     num_loops = num_loops-1;
     dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
     end
