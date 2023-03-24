@@ -1,34 +1,55 @@
 %load data and plot 
-d = abfload('22918005.abf','start',0,'stop','e');
+d = abfload('22918005.abf','start',0,'stop','e');%uploading abf files in matlab and creating a 3-dimentional matrix
 size(d)
 close all
 lowerl = 1
 upperl = 50000
 upperl2=100000
 upperl3=150000
+upperl4=200000
 figure
-subplot(2,2,1)
-plot(lowerl:upperl3, d(lowerl:upperl3,3,1))
-xlabel('Time*20kHz= number of Vm recordings')
-ylabel('Membrane Potential (mV)')
-subplot(2,2,2)
-plot(lowerl:upperl, d(lowerl:upperl,3,1))
-xlabel('Time*20kHz= number of Vm recordings')
-ylabel('Membrane Potential (mV)')
-subplot(2,2,3)
-plot(upperl:upperl2, d(upperl:upperl2,3,1))
-xlabel('Time*20kHz= number of Vm recordings')
-ylabel('Membrane Potential (mV)')
-subplot(2,2,4)
-plot(upperl2:upperl3, d(upperl2:upperl3,3,1))
-xlabel('Time*20kHz= number of Vm recordings')
-ylabel('Membrane Potential (mV)')
+plot(lowerl:upperl4, d(lowerl:upperl4,3,1))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Membrane Potential (mV)')
+figure
+    subplot(2,2,1)
+        plot(lowerl:upperl3, d(lowerl:upperl3,3,1))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Membrane Potential (mV)')
+    subplot(2,2,2)
+        plot(lowerl:upperl, d(lowerl:upperl,3,1))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Membrane Potential (mV)')
+    subplot(2,2,3)
+        plot(upperl:upperl2, d(upperl:upperl2,3,1))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Membrane Potential (mV)')
+    subplot(2,2,4)
+        plot(upperl2:upperl3, d(upperl2:upperl3,3,1))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Membrane Potential (mV)')
 
 %d(lowerl:upperl,3,1) - d(lowerl+1:upperl+1,3,1)
 %take derivative of data
-dy=diff(d(lowerl:10:upperl,3,1))./diff(lowerl:10:upperl);
+dy=diff(d(lowerl:10:upperl3,3,1))./diff(lowerl:10:upperl3);%steps of 10 measurements because recording frequency is very high and size of matrix was not manageable
 size(dy)
-plot(lowerl:upperl,dy(lowerl:upperl))
+figure
+    subplot(2,2,1)
+        plot(lowerl:upperl3,dy(lowerl:upperl3))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Change in Vm (dVm)')
+    subplot(2,2,2)
+        plot(lowerl:upperl,dy(lowerl:upperl))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Change in Vm (dVm)')
+    subplot(2,2,3)
+        plot(upperl:upperl2,dy(upperl:upperl2))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Change in Vm (dVm)')
+    subplot(2,2,4)
+        plot(upperl2:upperl3,dy(upperl2:upperl3))
+        xlabel('Time*20kHz= number of Vm recordings')
+        ylabel('Change in Vm (dVm)')
 
 %count positive deflecitons
 total_sweep_num=19;%# of sweeps
@@ -71,7 +92,7 @@ for a = 1:total_sweep_num
         set_cross_minus(length(set_cross_plus))= above_thres(end);
 
         spike_count= length(set_cross_plus); % Number of pulses, i.e. number of windows.
-        disp(['spike count at sweep:' a])
+        disp(['spike count at sweep:' num2str(a)])
         disp(spike_count)
     end
 end
