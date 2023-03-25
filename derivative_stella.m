@@ -54,6 +54,7 @@ num_ones = sum(AP_groups, 1);%count the number of ones in each group (derivatove
 disp(num_ones)
 successful=sum(num_ones>85)% out of 212 windows, only 76 had enough zeros to be considered successful APs. The cutoff of 85 was established after counting zeros in successful and unsuccessful events from multiple sweeps, it is prone to human error
  
+%with the code for counting general events and the one only considering successful events, a future direction would be tp calculate success rate for each sweep and each protocol and make conclusions about the neuron's state and how it changes with constant stimulation
+%future improvements:all sweeps at once, better user interface
 
-        
 
