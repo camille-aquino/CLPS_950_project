@@ -1,7 +1,7 @@
 function [count_ap] = count_successful_aps_camille(d)
 d = abfload('22d11014.abf','start',0,'stop','e');
 lowerl = 1;
-upperl = 30000; % first thing to parse through
+upperl = 20000; % first thing to parse through
 
 dy = diff(d(lowerl:upperl,3,1)) ./ diff(lowerl:upperl); % first segment of the first sweep
 %dy =  diff(d(lowerl:upperl,3,3)) ./ diff(lowerl:upperl); check
@@ -16,7 +16,7 @@ num_sweep = 1; % starting sweep number at 1 since matlab is 1 indexed
 
 sweep_ap = 0; % variable for number of successful APs in a given sweep
 
-num_loops = size(d,1)/30000; % breaking up data by looking through 30000 points at a time
+num_loops = size(d,1)/20000; % breaking up data by looking through 30000 points at a time
 % tried 10000 and 20000 but it turns out some of the sweeps start beyond
 % 20000 
 group_zero = 0;
@@ -36,29 +36,13 @@ while(num_sweep <= size(d,3))
                numzero = numzero - 1;
                end
            end
-          
-           %%%%%%%%%%%%%
-        %   j = lowerl;
-        %while(j<400)
-         %  if( abs(dy_bit(j+1) - dy_bit(j)) < 0.1 )   
-          %      numzero = numzero + (abs(dy_bit(j)) <= 0.01);
-           %     j = j+1
-   
-            %   end
-
-             %      if(numzero > 4)
-              %         group_zero = group_zero + 1;
-               %    end
-
-                %   j = j + 1;
-           %end
-           if(numzero>=4)
-            % if(group_zero >= 4) % successful AP if at least 4 0s
+     
+           if(numzero>=4) % successful AP if at least 4 (dy = 0)s
                  count_ap = count_ap + 1;
                  sweep_ap = sweep_ap + 1;
              end
         end
-        count_ap % first 20000 of first sweep: 41 APs 2nd loop: 45 3rd loop: 93 APs
+        count_ap 
              
         if(lowerl < 20000)
             lowerl = 0; % if done with first segment, reset lowerl to 0 so it can take over the previous upperl 
@@ -77,16 +61,25 @@ while(num_sweep <= size(d,3))
 
     disp(["Sweep" num_sweep "has" sweep_ap "successful APs"])
     sweep_ap = 0;
+   
     num_sweep = num_sweep + 1
+    
     num_loops = size(d,1)/20000; % reinstate the num of loops
     
     lowerl = 1;
     upperl = 20000;
-    if(num_sweep > 20)
+   if(num_sweep > 20)
         break
-    end
+   end
     dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
-    lowerl = find(abs(dy) > 0.1, 1);
+    lowerl = find(abs(dy) > 0.1, 1); % if APs don't start within first 20000 data points
+    if(isempty(lowerl))
+        lowerl = 20000;
+        upperl = 40000;
+        dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
+        lowerl = find(abs(dy) > 0.1, 1);
+        lowerl = lowerl + 20000;
+    end
     numzero = [];
     
 end
@@ -96,4 +89,6 @@ disp(["There are" count_ap "successful APs overall"])
 count_ap
 
 end
+
+% 1726 APs
 

@@ -29,33 +29,20 @@ while(num_sweep <= size(d,3))
        for i = lowerl:400:(upperl-400) % 400 inputs is width of an AP
            dy_bit = dy(i:i+400);
            numzero = sum(abs(dy_bit) <= 0.01);
-           is_last_bit_index = (mod(400, i) == 0;)
-           if(abs(dy_bit(i+1) - dy_bit(i)) < 0.01) % if it is the same value as its neighbor, remove one numzero. the last zero in the "group" of zeros will be counted so we're not overcounting
+           j = 1:400;
+           is_last_bit_index = (mod(400, j) == 0); 
+           if(~is_last_bit_index) % if you're not at the end of the AP, compare it to its right adjacent neighbor
+               if(abs(dy_bit(j+1) - dy_bit(j)) < 0.01) % if it is roughly the same value as its neighbor, remove one numzero. the last zero in the "group" of zeros will be counted so we're not overcounting
                numzero = numzero - 1;
+               end
            end
-          
-           %%%%%%%%%%%%%
-        %   j = lowerl;
-        %while(j<400)
-         %  if( abs(dy_bit(j+1) - dy_bit(j)) < 0.1 )   
-          %      numzero = numzero + (abs(dy_bit(j)) <= 0.01);
-           %     j = j+1
-   
-            %   end
-
-             %      if(numzero > 4)
-              %         group_zero = group_zero + 1;
-               %    end
-
-                %   j = j + 1;
-           %end
-           if(numzero>=4)
-            % if(group_zero >= 4) % successful AP if at least 4 0s
+     
+           if(numzero>=4) % successful AP if at least 4 (dy = 0)s
                  count_ap = count_ap + 1;
                  sweep_ap = sweep_ap + 1;
              end
         end
-        count_ap % first 20000 of first sweep: 41 APs 2nd loop: 45 3rd loop: 93 APs
+        count_ap 
              
         if(lowerl < 20000)
             lowerl = 0; % if done with first segment, reset lowerl to 0 so it can take over the previous upperl 
@@ -83,7 +70,14 @@ while(num_sweep <= size(d,3))
         break
     end
     dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
-    lowerl = find(abs(dy) > 0.1, 1);
+    lowerl = find(abs(dy) > 0.1, 1); % if APs don't start within first 20000 data points
+    if(isempty(lowerl))
+        lowerl = 20000;
+        upperl = 40000;
+        dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
+        lowerl = find(abs(dy) > 0.1, 1);
+        lowerl = lowerl + 20000;
+    end
     numzero = [];
     
 end
