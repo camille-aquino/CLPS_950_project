@@ -1,8 +1,12 @@
 # CLPS_950_project
 CLPS 950 Counting Action Potentials project with Stella and Camille
 
-Google Drive link with pictures and videos showing time spent not logged in Github: 
-https://drive.google.com/drive/folders/1RoBAhOnRgS7-IORo3AsXXf_qOfwIjcMx?usp=sharing 
+1) gif link: ![]count-ap-demo.gif
+
+2) Google Drive link with pictures and videos showing time spent not logged in Github: 
+    https://drive.google.com/drive/folders/1RoBAhOnRgS7-IORo3AsXXf_qOfwIjcMx?usp=sharing 
+
+3) Time Log: https://docs.google.com/spreadsheets/d/1eT0TXo4IE9vzKNaXQ-iais-oJyzy6L-3NmV3Vc8ubiw/edit?usp=sharing 
 
 PROJECT DESCRIPTION: ectopic action potential signal determination project
 
