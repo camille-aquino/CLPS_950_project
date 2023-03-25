@@ -13,7 +13,6 @@ PROJECT DESCRIPTION
 % to print data table, we used 
  d=abfload('22d11014.abf', 'start', 0, 'stop','e')
 
-<<<<<<< Updated upstream
 %to plot the data, we used 
 close all
 lowerl = 20000
@@ -47,4 +46,3 @@ ylabel('Membrane Potential (mV)')
 %possible directions:
 - derivative plot (spot all the places where the derivative is 0, help matlab know where the APs are 
 - detect height of Action potentials and count the ones that make it past a Vm value only 
->>>>>>> Stashed changes

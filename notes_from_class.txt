@@ -58,7 +58,7 @@ Y and z
 
 plotting every dimension to see where the points are
 
-Figured out third dimension is where the membrane potential points are
+Figured out third dimension (third channel) is where the membrane potential points are
 
 
 plot(1:200000, d(:,3,1))
@@ -79,8 +79,6 @@ size(d) = 60000 4 20
 number of sweeps = 20
 
 plot(1:60000, d(:,3,20))
-
-
 
 
 -----
