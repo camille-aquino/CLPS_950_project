@@ -30,21 +30,30 @@ plot(lowerl:upperl,dy(lowerl:upperl))
 
 
 i=1;
-total_sweep_num=19
+total_sweep_num=19;
 for a = 1:total_sweep_num
     threshold_deri =0.1;
     trace = d(:,3,a)
 
 clear("start_of_dericount")
-    for i=lowerl:upperl
+    for i=lowerl:upperl3
         if abs(dy)>=threshold_deri
-            start_of_dericount=dy(dy, i:upperl)
+            start_of_dericount=[dy(i:upperl)]
         end
     end
-   disp(start_of_dericount)
 
 end
-plot(start_of_dericount)
+
+no_slope=[abs(start_of_dericount)<=threshold_deri]%boolean telling us when values are close enough to zero in the entire cropped matrix
+group_size=400 %established width of AP taken from Vm plot
+AP_groups=reshape(no_slope(1:end-182), group_size, []) % no slope starts where the slope is not 0 for the first time (beginning of firing window) so we can start cropping there
+AP_groups=AP_groups' %colums to rows
+disp(size(AP_groups));%created 212 groups with 400 boolean datapoints each 
+
+num_ones = sum(AP_groups, 1);%count the number of ones in each group (derivatove close to zero in each AP)
+disp(num_ones)
+successful=sum(num_ones>85)% out of 212 windows, only 76 had enough zeros to be considered successful APs. The cutoff of 85 was established after counting zeros in successful and unsuccessful events from multiple sweeps, it is prone to human error
+ 
 
         
 
