@@ -1,12 +1,7 @@
 function [count_ap] = count_successful_aps_camille(d)
 
-% Summarizing into a Table
-
-%success_AP_count = ["SweepNumber"; "NumSuccessAPs"; "Number of Clim"]
-
-
-% d = abfload('22d11014.abf','start',0,'stop','e'); <- example of data
-
+% d = abfload('22d11014.abf','start',0,'stop','e'); <- example of data, copy into command window
+ 
 % GOAL: Count the number of successful APs in each sweep and overall. 
 %       Sometimes an injection of current to a cell fails to elicit an action
 %       potential (AP). This function seeks to count how many successful APs are
@@ -33,7 +28,6 @@ upperl = 20000; %highest limit
 dy = diff(d(lowerl:upperl,3,1)) ./ diff(lowerl:upperl); % first segment of the first sweep
 
 
-
 lowerl = find(abs(dy) > 0.1, 1); % finds first place where dy is much greater than 0 (i.e. 0.5)
          % don't want to start counting at the start before injecting a current, 
          % as all of those values will be considered 0 and lead to an
@@ -44,6 +38,11 @@ numzero = []; % placeholder for derivative close to 0
 num_sweep = 1; % starting sweep number at 1 since matlab is 1 indexed
 
 num_loops = size(d,1)/20000; % breaking up data by looking through 20000 points at a time
+
+count_ap = 0;
+sweep_ap = 0;
+
+sweep_plot = [];
 
 while(num_sweep <= size(d,3)) % looping through each sweep
     while(num_loops > 0) % looping through broken up segments of a single sweep
@@ -82,7 +81,7 @@ while(num_sweep <= size(d,3)) % looping through each sweep
              end
        end
 
-        count_ap 
+      %  count_ap 
              
         if(lowerl < 20000) % If lowerl still in the first segment boundary, reset to 0
                            % so it can be added to in the future
@@ -105,7 +104,7 @@ while(num_sweep <= size(d,3)) % looping through each sweep
          % reupdating dy with updated lowerl and upperl
          dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);  
     end
-
+    sweep_plot = [sweep_plot sweep_ap];
     disp(["Sweep" num_sweep "has" sweep_ap "successful APs"])
     sweep_ap = 0;
    
@@ -118,15 +117,15 @@ while(num_sweep <= size(d,3)) % looping through each sweep
     upperl = 20000; % end of first segment of possible fails for this subject
  
     % ending while loop for sweeps once you hit 20 sweeps
-   if(num_sweep > 20)
+   if(num_sweep > size(d,3))
         break
    end
 
    dy = diff(d(lowerl:upperl,3,num_sweep)) ./ diff(lowerl:upperl);
    lowerl = find(abs(dy) > 0.1, 1); % finding the "first time" (second time for whoever is training me) 
    
-   % if the sweep's start time (lowerl) is not taken
-   % they don't % I'm 90% 
+   % if the sweep's start time (lowerl) is empty because it starts past
+   % 20000 data points, look past 20000 to check for start point
   
         if(isempty(lowerl))
             lowerl = 20000;
@@ -142,11 +141,16 @@ end
 
 disp(["There are" count_ap "successful APs overall"])
 
-count_ap % the world
+%count_ap    
+
+close("all")
+bar(sweep_plot)
+xlabel('Sweep Number')
+ylabel('Number of Successful APs')
+title('Number of APs Per Sweep')
 
 end
 
-% 1726 APs
 
 
 

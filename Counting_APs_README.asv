@@ -14,12 +14,11 @@ size() and to plot to figure out the meaning of each dimension.
 Goal: to differentiate and count those APs
 
 Methods:
-1. go by membrane potential height, and only count the events that make it 
-    past a Vm  threshold ----- coded by Stella
-2. plot the derivative of the Vm curve and spot (clusters of) zeros, then 
-    tell Matlab that a certain amount makes up an AP ----- coded by Camille
+1. go by membrane potential height, and only count the events that make it past a Vm  threshold (Ca
+2. plot the derivative of the Vm curve and spot (clusters of) zeros, then tell Matlab that a certain amount makes up an AP
+
 
 Notes about not logging hours from beginning of project: 
-- Stella was trying to edit another person's repository by accident for a while 
-- We also just generally couldn't figure out Github for the first 2 days (took
-    vlogs to record our time when we worked, see Google Drive)
+- Stella was trying to edit another person's repository by accident, 
+- Github was not working for Stella for the first 2 days (and we also just 
+    generally couldn't figure it out for the first 2 days)
