@@ -60,7 +60,7 @@ data=abfload(file);
 
 for a = 1:total_sweep_num
     x = linspace(0,10,200000);% n points in a linear vector with evenly spaced points
-    threshold_for_APs =10;
+    threshold_for_APs = 10;
        spike_count = [];%creating empty matrix to count APs
        trace = data(:,channel,a);%selecting all of the measurments from channel 3 in the current sweep we are in (inputs rk like plotting)
        %this focuses on one trace at a time (trace=sweep)

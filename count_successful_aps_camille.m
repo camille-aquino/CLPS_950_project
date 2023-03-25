@@ -1,6 +1,6 @@
 function [count_ap] = count_successful_aps_camille(d)
 
-% d = abfload('22d11014.abf','start',0,'stop','e'); <- example of data, copy into command window
+% d = abfload('22918005.abf','start',0,'stop','e'); <- example of data, copy into command window
  
 % GOAL: Count the number of successful APs in each sweep and overall. 
 %       Sometimes an injection of current to a cell fails to elicit an action
@@ -26,7 +26,6 @@ lowerl = 1; %lower limit
 upperl = 20000; %highest limit
 
 dy = diff(d(lowerl:upperl,3,1)) ./ diff(lowerl:upperl); % first segment of the first sweep
-
 
 lowerl = find(abs(dy) > 0.1, 1); % finds first place where dy is much greater than 0 (i.e. 0.5)
          % don't want to start counting at the start before injecting a current, 
