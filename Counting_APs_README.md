@@ -1,7 +1,7 @@
 # CLPS_950_project
 CLPS 950 Counting Action Potentials project with Stella and Camille
 
-1) gif link: ![]count-ap-demo.gif
+1) gif link: ![count-ap-demo](https://github.com/camille-aquino/CLPS_950_project/blob/main/count-ap-demo.gif)
 
 2) Google Drive link with pictures and videos showing time spent not logged in Github: 
     https://drive.google.com/drive/folders/1RoBAhOnRgS7-IORo3AsXXf_qOfwIjcMx?usp=sharing 
